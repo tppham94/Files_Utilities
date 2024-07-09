@@ -11,11 +11,11 @@ class FileUtilitiesUI:
         screen_height = root.winfo_screenheight()
         
         # Calculate center coordinates
-        x = (screen_width // 2) - (400 // 2)
+        x = (screen_width // 2) - (720 // 2)
         y = (screen_height // 2) - (400 // 2)
         
         # Set initial window size and position
-        self.root.geometry('400x400+{}+{}'.format(x, y))
+        self.root.geometry('720x400+{}+{}'.format(x, y))
         
         # File path variables
         self.file_path1 = tk.StringVar()
