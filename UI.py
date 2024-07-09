@@ -4,7 +4,7 @@ from tkinter import filedialog
 class FileUtilitiesUI:
     def __init__(self, root):
         self.root = root
-        self.root.title("File Selector")
+        self.root.title("File Utilities")
         
         # Determine screen width and height
         screen_width = root.winfo_screenwidth()
@@ -64,9 +64,9 @@ class FileUtilitiesUI:
         output_name = self.output_file.get()
         
         # Need to add logic to get the output name properly 
-        print("File 1:", file1)
-        print("File 2:", file2)
-        print("Output File Name:", output_name)
+        #print("File 1:", file1)
+        #print("File 2:", file2)
+        #print("Output File Name:", output_name)
         
 
 if __name__ == "__main__":
