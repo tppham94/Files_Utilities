@@ -30,3 +30,23 @@ def write_results_to_file(matched_lines, text_file_path):
         for line in matched_lines:
             file.write(f"Excel Row: {line}\n")
 
+# Main function to run 
+def main():
+    # First file path 
+    text_file_path = 'C:/SCS/Active Records/Network/June 2024/CPPIB/Scripts/CPPIB_Cisco_IOS_policy.txt'
+    # Excel file path
+    excel_file_path = 'C:/SCS/Active Records/Network/June 2024/CPPIB/Scripts/CPPIB Cisco IOS-XE Tech Spec DRAFT February24-2023.txt'
+    # Output file location to generate 
+    output_file_path = 'C:/SCS/Active Records/Network/June 2024/CPPIB/Scripts/CPPIB_Cisco_IOS_Results.txt'
+
+    # Read checknames from text file
+    checknames = read_text_file(text_file_path)
+
+    # Search excel file for matches 
+    matched_lines = search_excel(excel_file_path, checknames)
+
+    # Write results to output text file 
+    write_results_to_file(matched_lines, output_file_path)
+
+    print(f"Results written to {output_file_path}")
+    
