@@ -6,13 +6,21 @@ def read_text_file(file_path):
     checknames = []
     with open(file_path, 'r') as file:
         lines = file.readlines()
-        for i, line in enumerate(lines):
+        i = 0
+        while i < len(lines):
+            line = lines[i]
             if "checkname:" in line:
                 # Extract the value after "checkname:"
                 match = re.search(r'checkname:\s*(.*)', line)
                 if match:
                     checkname = match.group(1).strip()
-                    checknames.append((i + 1, checkname))  # Store line number along with checkname
+                    # Skip lines starting with "CD.x.x.xx:" immediately after "checkname:"
+                    i += 1
+                    while i < len(lines) and re.match(r'CD\.\d+\.\d+\.\d+:', lines[i].strip()):
+                        i += 1
+                    if i < len(lines):
+                        checknames.append((i + 1, checkname))  # Store line number along with checkname
+            i += 1
     return checknames
 
 # Function to search Excel file and extract matching lines
