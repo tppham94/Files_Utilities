@@ -5,13 +5,14 @@ import re
 def read_text_file(file_path):
     checknames = []
     with open(file_path, 'r') as file:
-        for line in file:
+        lines = file.readlines()
+        for i, line in enumerate(lines):
             if "checkname:" in line:
                 # Extract the value after "checkname:"
                 match = re.search(r'checkname:\s*([\w\s-]+)', line)
                 if match:
                     checkname = match.group(1).strip()
-                    checknames.append(checkname)
+                    checknames.append((i + 1, checkname))  # Store line number along with checkname
     return checknames
 
 # Function to search Excel file and extract matching lines
@@ -22,9 +23,9 @@ def search_excel(excel_path, checknames):
 
     for row_idx in range(1, sheet.nrows):  # Start from 1 to skip header row
         row = sheet.row_values(row_idx)
-        for checkname in checknames:
+        for line_num, checkname in checknames:
             if (checkname in str(row[2])) or (checkname in str(row[3])) or (checkname in str(row[5])):
-                matched_lines.append(f"Excel Row: {row}")
+                matched_lines.append(f"Line {line_num}: {row}")
                 break  # Once a match is found, no need to check further for this row
     
     workbook.release_resources()  # Close workbook to release memory
