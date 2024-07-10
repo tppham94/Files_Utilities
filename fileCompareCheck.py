@@ -1,4 +1,5 @@
 import xlrd
+import re
 
 # Function to read text file and extract checkname values
 def read_text_file(file_path):
@@ -7,8 +8,10 @@ def read_text_file(file_path):
         for line in file:
             if "checkname:" in line:
                 # Extract the value after "checkname:"
-                checkname = line.split("checkname:")[1].strip().split(": ")[1].strip()
-                checknames.append(checkname)
+                match = re.search(r'checkname:\s*([\w\s-]+)', line)
+                if match:
+                    checkname = match.group(1).strip()
+                    checknames.append(checkname)
     return checknames
 
 # Function to search Excel file and extract matching lines
@@ -20,7 +23,7 @@ def search_excel(excel_path, checknames):
     for row_idx in range(1, sheet.nrows):  # Start from 1 to skip header row
         row = sheet.row_values(row_idx)
         for checkname in checknames:
-            if (checkname in row[2]) or (checkname in row[3]) or (checkname in row[5]):
+            if (checkname in str(row[2])) or (checkname in str(row[3])) or (checkname in str(row[5])):
                 matched_lines.append(f"Excel Row: {row}")
                 break  # Once a match is found, no need to check further for this row
     
