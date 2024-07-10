@@ -9,7 +9,7 @@ def read_text_file(file_path):
         for i, line in enumerate(lines):
             if "checkname:" in line:
                 # Extract the value after "checkname:"
-                match = re.search(r'checkname:\s*([\w\s-]+)', line)
+                match = re.search(r'checkname:\s*([\w\d\S]+)', line)
                 if match:
                     checkname = match.group(1).strip()
                     checknames.append((i + 1, checkname))  # Store line number along with checkname
