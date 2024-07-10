@@ -12,12 +12,17 @@ def read_text_file(file_path):
                 match = re.search(r'checkname:\s*(.*)', line)
                 if match:
                     checkname = match.group(1).strip()
-                    # Check the rest of the line for "CD.x.x.xx:"
+                    # Check the rest of the line for values after "CD.x.x.xx:"
                     for j in range(i + 1, len(lines)):
                         if re.match(r'.*CD\.\d+\.\d+\.\d+:.*', lines[j].strip()):
-                            continue  # Skip lines containing "CD.x.x.xx:"
+                            # Extract the value after "CD.x.x.xx:"
+                            match_cd = re.search(r'CD\.\d+\.\d+\.\d+:\s*(.*)', lines[j].strip())
+                            if match_cd:
+                                checkname += " " + match_cd.group(1).strip()
                         else:
                             checkname += " " + lines[j].strip()  # Append rest of the line
+                            if lines[j].strip() == '':
+                                break  # Stop reading at end of row
                 checknames.append((i + 1, checkname))  # Store line number along with checkname
     return checknames
 
