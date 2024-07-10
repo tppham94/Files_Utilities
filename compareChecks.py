@@ -49,4 +49,6 @@ def main():
     write_results_to_file(matched_lines, output_file_path)
 
     print(f"Results written to {output_file_path}")
-    
+
+if __name__ == "__main__":
+    main()
