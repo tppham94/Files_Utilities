@@ -12,14 +12,13 @@ def read_text_file(file_path):
                 match = re.search(r'checkname:\s*(.*)', line)
                 if match:
                     checkname = match.group(1).strip()
-                    # Check if the line contains "CD.x.x.xx:" on the same row
-                    skip_line = False
+                    # Check the rest of the line for "CD.x.x.xx:"
                     for j in range(i + 1, len(lines)):
                         if re.match(r'.*CD\.\d+\.\d+\.\d+:.*', lines[j].strip()):
-                            skip_line = True
-                            break
-                    if not skip_line:
-                        checknames.append((i + 1, checkname))  # Store line number along with checkname
+                            continue  # Skip lines containing "CD.x.x.xx:"
+                        else:
+                            checkname += " " + lines[j].strip()  # Append rest of the line
+                checknames.append((i + 1, checkname))  # Store line number along with checkname
     return checknames
 
 # Function to search Excel file and extract matching lines
