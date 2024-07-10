@@ -4,9 +4,11 @@ def remove_spaces_after_checkname(input_file):
     output_lines = []
     with open(input_file, 'r') as f:
         for line in f:
+            # Search for lines containing "checkname:" followed by optional spaces and capture the rest of the line
             match = re.search(r'(checkname:)\s*(\S.*)', line, re.IGNORECASE)
             if match:
-                updated_line = match.group(1) + ' ' + match.group(2) + '\n'
+                # Combine "checkname:" with the trimmed rest of the line
+                updated_line = match.group(1) + ' ' + match.group(2).lstrip() + '\n'
                 output_lines.append(updated_line)
             else:
                 output_lines.append(line)
