@@ -24,3 +24,9 @@ def search_excel(excel_path, checknames):
     wb.close()
     return matched_lines
 
+# Function to write result to a text file 
+def write_results_to_file(matched_lines, text_file_path):
+    with open(text_file_path, 'w') as file:
+        for line in matched_lines:
+            file.write(f"Excel Row: {line}\n")
+
