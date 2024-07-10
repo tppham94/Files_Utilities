@@ -6,8 +6,8 @@ def read_text_file(file_path):
     with open(file_path, 'r') as file:
         for line in file:
             if "checkname:" in line:
-                # Extract the value after "checkname:"
-                checkname = line.split("checkname:")[1].strip()
+                # Extract the value after the first "-" following "checkname:"
+                checkname = line.split("checkname:")[1].strip().split("-")[0].strip()
                 checknames.append(checkname)
     return checknames
 
