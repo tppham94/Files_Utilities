@@ -9,7 +9,7 @@ def read_text_file(file_path):
         for i, line in enumerate(lines):
             if "checkname:" in line:
                 # Extract the value after "checkname:"
-                match = re.search(r'checkname:\s*([\w\d\S]+)', line)
+                match = re.search(r'checkname:\s*(.*)', line)
                 if match:
                     checkname = match.group(1).strip()
                     checknames.append((i + 1, checkname))  # Store line number along with checkname
@@ -26,7 +26,7 @@ def search_excel(excel_path, checknames):
         for line_num, checkname in checknames:
             # Check if checkname matches in any of columns C (index 2), D (index 3), or F (index 5)
             if (checkname in str(row[2])) or (checkname in str(row[3])) or (checkname in str(row[5])):
-                matched_lines.append(f"Line {line_num}: {line.strip()}")  # Save the entire line from text file
+                matched_lines.append(f"Line {line_num}: {checkname}")  # Save the line from text file
                 break  # Once a match is found, no need to check further for this row
     
     workbook.release_resources()  # Close workbook to release memory
