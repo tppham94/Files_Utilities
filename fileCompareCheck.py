@@ -24,8 +24,9 @@ def search_excel(excel_path, checknames):
     for row_idx in range(1, sheet.nrows):  # Start from 1 to skip header row
         row = sheet.row_values(row_idx)
         for line_num, checkname in checknames:
+            # Check if checkname matches in any of columns C (index 2), D (index 3), or F (index 5)
             if (checkname in str(row[2])) or (checkname in str(row[3])) or (checkname in str(row[5])):
-                matched_lines.append(f"Line {line_num}: {row}")
+                matched_lines.append(f"Line {line_num}: {line.strip()}")  # Save the entire line from text file
                 break  # Once a match is found, no need to check further for this row
     
     workbook.release_resources()  # Close workbook to release memory
