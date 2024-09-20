@@ -20,12 +20,13 @@ def read_text_file(file_path):
                             checkname += " " + lines[j].strip()
                 if checkname:
                     checknames.append((i + 1, checkname))  # Store line number and value after CD.x.x.xx:
+            print(checknames)
     return checknames
 
 def search_excel(excel_path, checknames):
     matched_lines = []
     workbook = xlrd.open_workbook(excel_path)
-    sheet = workbook.sheet_by_name('Tech Spec Main Body')
+    sheet = workbook.sheet_by_name('Tech Spec Main Body ')
 
     for row_idx in range(1, sheet.nrows):  # Start from 1 to skip header row
         row = sheet.row_values(row_idx)
@@ -44,9 +45,9 @@ def write_results_to_file(matched_lines, output_file_path):
 
 def main():
     # Paths to your text file, Excel file, and output text file
-    text_file_path = 'path/to/your/textfile.txt'
-    excel_file_path = 'path/to/your/excelfile.xls'
-    output_file_path = 'output.txt'
+    text_file_path = 'C:/SCS/Active Records/Network/June 2024/CPPIB/Scripts/CPPIB_Cisco_IOS_policy_updated.txt'
+    excel_file_path = 'C:/SCS/Active Records/Network/June 2024/CPPIB/Scripts/CPPIB Cisco IOS-XE Tech Spec DRAFT February24-2023.xlsx'
+    output_file_path = 'C:/SCS/Active Records/Network/June 2024/CPPIB/Scripts/RESULTS.txt'
 
     # Read checknames from the text file
     checknames = read_text_file(text_file_path)

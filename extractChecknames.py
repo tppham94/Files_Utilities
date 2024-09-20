@@ -5,8 +5,8 @@ def extract_checkname(line):
     return line.split("checkname:")[1].strip()
 
 # Input and output file paths
-input_file = 'input.txt'  # Replace with your input text file path
-output_file = 'output.xlsx'  # Replace with your desired output Excel file path
+input_file = 'C:/SCS/Active Records/Network/June 2024/CPPIB/Scripts/CPPIB_Cisco_NS-OS_policy.txt'  # Replace with your input text file path
+output_file = 'C:/SCS/Active Records/Network/June 2024/CPPIB/Scripts/NS-IOS_output.xlsx'  # Replace with your desired output Excel file path
 
 # Create a workbook and select the active sheet
 wb = openpyxl.Workbook()
