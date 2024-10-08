@@ -17,7 +17,7 @@ def createExcelSpreadsheet():
 def generateSheetsFromList():
     with pd.ExcelWriter('multiple_sheets_example.xlsx', engine='openpyxl') as writer:
         for sheet_name in sheet_names:
-            # Create a simple DataFrame for each sheet (you can customize this as needed)
+            # Create a simple DataFrame for each sheet (Can be adjusted)
             df = pd.DataFrame({
                 'Column1': [1, 2, 3],
                 'Column2': ['A', 'B', 'C']
@@ -26,6 +26,6 @@ def generateSheetsFromList():
             # Write the DataFrame to the specified sheet
             df.to_excel(writer, sheet_name=sheet_name, index=False)
 
-    print("Excel file created with multiple sheets.")
+    print("Excel file created with multiple sheets !")
 
 generateSheetsFromList()
