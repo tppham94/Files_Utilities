@@ -1,6 +1,16 @@
 import openpyxl
 import pandas as pd 
 
+def extractDevicesNames():
+    # Specify the file name
+    file_name = 'devicesName.txt'
+
+    # Read text file
+    with open(file_name, 'r') as file:
+        file_contents = file.read()
+    
+    return file_contents
+
 # List of sheet test 
 sheet_names = ['Prod1', 'Prod2', 'Prod3']
 
@@ -28,4 +38,5 @@ def generateSheetsFromList():
 
     print("Excel file created with multiple sheets !")
 
-generateSheetsFromList()
+# generateSheetsFromList()
+extractDevicesNames()
