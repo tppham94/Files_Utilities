@@ -7,7 +7,7 @@ def extractDevicesNames():
 
     # Read text file
     with open(file_name, 'r') as file:
-        file_contents = file.read()
+        file_contents = file.readlines()
     
     return file_contents
 
@@ -30,5 +30,5 @@ def generateSheetsFromList():
 
     print("Excel file created with multiple sheets !")
 
-# generateSheetsFromList()
+generateSheetsFromList()
 # print(extractDevicesNames())
